@@ -34,12 +34,14 @@ public class Utils {
             System.out.println ("Error opening the file " + file);
             System.exit (0);
         }*/
-        File inFile = new File("data.txt");
+        File inFile = new File(file);
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(inFile));
             String line = null;
 
+            if(removeHeader)
+                line=br.readLine();
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
                 lines.add(line);

@@ -57,9 +57,21 @@ public class HGUCoursePatternAnalyzer {
 		// TODO: Implement this method
 		HashMap<String,Student> students = new HashMap<String,Student>();
 
-		Student student = new Student("1");
+		Student student;
+		for(int i = 0; i < Integer.parseInt(lines.get(lines.size()-1).split(", ")[0]); i++) {
+			student = new Student(String.format("%04d", i+1));
+			students.put(String.format("%04d", i+1), student);
+			System.out.println("debug " + i);
+		}
+		for(int i = 1; i < 254; i++)
+			System.out.println("student id : " + students.get(String.format("%04d", i)).getStudentId());
+
+		Course course;
 		for(String line:lines) {
-			Course course = new Course(line);
+			System.out.println("debug " + line);
+			course = new Course(line);
+			System.out.println(course.getStudentId());
+			students.get(course.getStudentId()).addCourse(course);
 		}
 
 		return students; // do not forget to return a proper variable.

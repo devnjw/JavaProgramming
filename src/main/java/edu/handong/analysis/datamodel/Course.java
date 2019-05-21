@@ -11,20 +11,30 @@ public class Course {
     private int yearTaken;
     private int semesterCourseTaken;
 
+
     public Course(String line){
-        studentId = line.split(" ")[0].trim();
-        yearMonthGraduated = line.split(" ")[1].trim();
-        firstMajor = line.split(" ")[2].trim();
-        secondMajor = line.split(" ")[3].trim();
-        courseCode = line.split(" ")[4].trim();
-        courseName = line.split(" ")[5].trim();
-        courseCredit = line.split(" ")[6].trim();
-        yearTaken = Integer.parseInt(line.split(" ")[7].trim());
-        semesterCourseTaken = Integer.parseInt(line.split(" ")[8].trim());
+        String data[] = line.split(", ");
+        studentId = data[0].trim();
+        yearMonthGraduated = data[1].trim();
+        firstMajor = data[2].trim();
+        secondMajor = data[3].trim();
+        courseCode = data[4].trim();
+        courseName = data[5].trim();
+        courseCredit = data[6].trim();
+        yearTaken = Integer.parseInt(data[7].trim());
+        semesterCourseTaken = Integer.parseInt(data[8].trim());
+        for(int i = 0; i < 9; i++)
+            System.out.println("debug " + data[i]);
     }
 
 
     public String getStudentId() {
         return studentId;
+    }
+    public int getYearTaken() {
+        return yearTaken;
+    }
+    public int getSemesterCourseTaken() {
+        return semesterCourseTaken;
     }
 }
