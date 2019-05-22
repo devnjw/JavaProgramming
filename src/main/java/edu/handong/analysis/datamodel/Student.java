@@ -16,16 +16,10 @@ public class Student {
 
     public Student(String studentId){
         this.studentId = studentId;
-    } // constructor
-    public void setCoursesTaken() {
         coursesTaken = new ArrayList<Course>();
-    }
+    } // constructor
 
-    public ArrayList<Course> getCoursesTaken() {
-        return coursesTaken;
-    }
     public void addCourse(Course newRecord){
-        //coursesTaken = new ArrayList<Course>();
         coursesTaken.add(newRecord);
     }
 
@@ -35,17 +29,14 @@ public class Student {
         int yearTaken = coursesTaken.get(0).getYearTaken();
         int semesterCourseTaken = coursesTaken.get(0).getSemesterCourseTaken();
 
-        //System.out.println("test : "+ coursesTaken.size() + " + " + yearTaken + " + " + semesterCourseTaken);
-        semestersByYearAndSemester.put(Integer.toString(yearTaken) + "-" + Integer.toString(semesterCourseTaken), semester++);
+        semestersByYearAndSemester.put(yearTaken + "-" + semesterCourseTaken, semester++);
 
         for(int i = 0; i < coursesTaken.size(); i++){
             Course course = coursesTaken.get(i);
-            //System.out.println(course.getSemesterCourseTaken() + "vs" + semesterCourseTaken);
             if(course.getSemesterCourseTaken() != semesterCourseTaken || course.getYearTaken() != yearTaken) {
                 yearTaken = course.getYearTaken();
                 semesterCourseTaken = course.getSemesterCourseTaken();
-                semestersByYearAndSemester.put(Integer.toString(yearTaken) + "-" + Integer.toString(semesterCourseTaken), semester++);
-                //System.out.println("WORKING!!! " + semestersByYearAndSemester.get(Integer.toString(yearTaken) + "-" + Integer.toString(semesterCourseTaken)));
+                semestersByYearAndSemester.put(yearTaken + "-" + semesterCourseTaken, semester++);
             }
         }
     }
@@ -55,11 +46,9 @@ public class Student {
     public int getNumCourseInNthSemester(int semester){
         int count = 0;
 
-        for(int i = 0; i < coursesTaken.size(); i++){
-            //System.out.println(semestersByYearAndSemester.get(coursesTaken.get(i).getYearTaken() + "-" + coursesTaken.get(i).getSemesterCourseTaken()));
+        for(int i = 0; i < coursesTaken.size(); i++)
             if(semester == semestersByYearAndSemester.get(coursesTaken.get(i).getYearTaken() + "-" + coursesTaken.get(i).getSemesterCourseTaken()))
                 count++;
-        }
 
         return count;
     }

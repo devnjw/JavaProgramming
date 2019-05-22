@@ -60,15 +60,12 @@ public class HGUCoursePatternAnalyzer {
 		Student student;
 		for(int i = 0; i < Integer.parseInt(lines.get(lines.size()-1).split(", ")[0]); i++) {
 			student = new Student(String.format("%04d", i+1));
-			student.setCoursesTaken();
 			students.put(String.format("%04d", i+1), student);
 		}
-		//for(int i = 1; i < 254; i++)
-		//	System.out.println("student id : " + students.get(String.format("%04d", i)).getStudentId());
 
-		Course course;
+		//Course course;
 		for(String line:lines) {
-			course = new Course(line);
+			Course course = new Course(line);
 			students.get(course.getStudentId()).addCourse(course);
 		}
 
@@ -95,9 +92,7 @@ public class HGUCoursePatternAnalyzer {
 		arrayList.add("StudentID, TotalNumberOfSemestersRegistered, Semester, NumCoursesTakenInTheSemester");
 
 		for(int i = 0; i < sortedStudents.size(); i++){
-			System.out.println("id : " + sortedStudents.get(String.format("%04d", i+1)).getStudentId());
 			sortedStudents.get(String.format("%04d", i+1)).setSemestersByYearAndSemester();
-			//sortedStudents.get(String.format("%04d", i+1)).getSemestersByYearAndSemester();
 			for(int j = 0; j < sortedStudents.get(String.format("%04d", i+1)).getSemestersByYearAndSemester().size(); j++)
 				arrayList.add(sortedStudents.get(String.format("%04d", i+1)).getStudentId() + ", " + sortedStudents.get(String.format("%04d", i+1)).getSemestersByYearAndSemester().size() + ", " + Integer.toString(j+1) + ", " + Integer.toString(sortedStudents.get(String.format("%04d", i+1)).getNumCourseInNthSemester(j+1)));
 		}

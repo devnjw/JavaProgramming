@@ -8,32 +8,17 @@ public class Utils {
 
     public static ArrayList<String> getLines(String file,boolean removeHeader){
 
-        /*try {
+        try {
             File theDir = new File(file);
             if (!theDir.exists())
                 throw new NotEnoughArgumentException(file);
         } catch (NotEnoughArgumentException e) {
             System.out.println(e.getMessage());
             System.exit(0);
-        }*/
+        }
 
         ArrayList<String> lines = new ArrayList<String>();
-        /*Scanner inputStream = null;
-        System.out.println ("The file " + file + "\ncontains the following lines:\n");
 
-        try {
-            inputStream = new Scanner(new File(file));
-            String line = null;
-            if(removeHeader)
-                line = inputStream.nextLine();
-            while ((line = inputStream.nextLine()) != null) {
-                System.out.println(line);
-                lines.add(line);
-            }
-        }  catch (FileNotFoundException e) {
-            System.out.println ("Error opening the file " + file);
-            System.exit (0);
-        }*/
         File inFile = new File(file);
         BufferedReader br = null;
         try {
@@ -57,13 +42,16 @@ public class Utils {
 
         return lines;
     }
+
     public static void writeAFile(ArrayList<String> lines, String targetFileName){
 
         File theDir = new File(targetFileName);
-        if (!theDir.exists()) theDir.mkdirs();
-
         BufferedWriter bw = null;
         try {
+            if(targetFileName.contains("\\"))
+                theDir.getParentFile().mkdirs();//targetFileName이 \\을 포함하면, path를 포함하는 것으로 인식 -> 디렉토리 생성
+            if(!theDir.exists())
+                theDir.createNewFile();//파일 없으면 파일 생성
             bw = new BufferedWriter(new FileWriter(theDir));
             for(int i = 0; i < lines.size() - 1; i++){
                 bw.write(lines.get(i));
