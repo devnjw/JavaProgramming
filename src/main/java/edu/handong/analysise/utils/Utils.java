@@ -27,8 +27,9 @@ public class Utils {
 
             if(removeHeader)
                 line=br.readLine();
+            System.out.println("Reading File...");
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
+                //System.out.println(line);
                 lines.add(line);
             }
         } catch (IOException ioe) {
@@ -53,11 +54,13 @@ public class Utils {
             if(!theDir.exists())
                 theDir.createNewFile();//파일 없으면 파일 생성
             bw = new BufferedWriter(new FileWriter(theDir));
-            for(int i = 0; i < lines.size() - 1; i++){
+            System.out.println("Writing File...");
+            for(int i = 0; i < lines.size(); i++){
                 bw.write(lines.get(i));
                 bw.newLine();
             }
             bw.flush();
+            System.out.println("File saved!!");
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
