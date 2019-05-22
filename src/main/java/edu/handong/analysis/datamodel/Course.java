@@ -23,8 +23,6 @@ public class Course {
         courseCredit = data[6].trim();
         yearTaken = Integer.parseInt(data[7].trim());
         semesterCourseTaken = Integer.parseInt(data[8].trim());
-        for(int i = 0; i < 9; i++)
-            System.out.println("debug " + data[i]);
     }
 
 

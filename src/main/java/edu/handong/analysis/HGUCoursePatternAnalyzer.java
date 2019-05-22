@@ -60,17 +60,15 @@ public class HGUCoursePatternAnalyzer {
 		Student student;
 		for(int i = 0; i < Integer.parseInt(lines.get(lines.size()-1).split(", ")[0]); i++) {
 			student = new Student(String.format("%04d", i+1));
+			student.setCoursesTaken();
 			students.put(String.format("%04d", i+1), student);
-			System.out.println("debug " + i);
 		}
-		for(int i = 1; i < 254; i++)
-			System.out.println("student id : " + students.get(String.format("%04d", i)).getStudentId());
+		//for(int i = 1; i < 254; i++)
+		//	System.out.println("student id : " + students.get(String.format("%04d", i)).getStudentId());
 
 		Course course;
 		for(String line:lines) {
-			System.out.println("debug " + line);
 			course = new Course(line);
-			System.out.println(course.getStudentId());
 			students.get(course.getStudentId()).addCourse(course);
 		}
 
@@ -92,9 +90,18 @@ public class HGUCoursePatternAnalyzer {
 	 * @return
 	 */
 	private ArrayList<String> countNumberOfCoursesTakenInEachSemester(Map<String, Student> sortedStudents) {
-		
 		// TODO: Implement this method
-		
-		return null; // do not forget to return a proper variable.
+		ArrayList<String> arrayList = new ArrayList<>();
+		arrayList.add("StudentID, TotalNumberOfSemestersRegistered, Semester, NumCoursesTakenInTheSemester");
+
+		for(int i = 0; i < sortedStudents.size(); i++){
+			System.out.println("id : " + sortedStudents.get(String.format("%04d", i+1)).getStudentId());
+			sortedStudents.get(String.format("%04d", i+1)).setSemestersByYearAndSemester();
+			//sortedStudents.get(String.format("%04d", i+1)).getSemestersByYearAndSemester();
+			for(int j = 0; j < sortedStudents.get(String.format("%04d", i+1)).getSemestersByYearAndSemester().size(); j++)
+				arrayList.add(sortedStudents.get(String.format("%04d", i+1)).getStudentId() + ", " + sortedStudents.get(String.format("%04d", i+1)).getSemestersByYearAndSemester().size() + ", " + Integer.toString(j+1) + ", " + Integer.toString(sortedStudents.get(String.format("%04d", i+1)).getNumCourseInNthSemester(j+1)));
+		}
+
+		return arrayList; // do not forget to return a proper variable.
 	}
 }

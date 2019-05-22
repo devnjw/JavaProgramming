@@ -65,7 +65,7 @@ public class Utils {
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new FileWriter(theDir));
-            for(int i = 0; i < lines.size(); i++){
+            for(int i = 0; i < lines.size() - 1; i++){
                 bw.write(lines.get(i));
                 bw.newLine();
             }
