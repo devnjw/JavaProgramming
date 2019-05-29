@@ -12,6 +12,14 @@ public class Course {
     private int semesterCourseTaken;
 
 
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
     public Course(String line){
         String data[] = line.split(", ");
         studentId = data[0];

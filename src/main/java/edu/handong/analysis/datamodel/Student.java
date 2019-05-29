@@ -9,6 +9,10 @@ public class Student {
 
     private String studentId;
 
+    public ArrayList<Course> getCoursesTaken() {
+        return coursesTaken;
+    }
+
     private ArrayList<Course> coursesTaken; // 학생이 들은 수업 목록
     private HashMap<String,Integer> semestersByYearAndSemester;
         // key: Year-Semester
@@ -25,6 +29,10 @@ public class Student {
 
     public void setSemestersByYearAndSemester() {
         semestersByYearAndSemester = new HashMap<String, Integer>();
+
+        if(coursesTaken.isEmpty())
+            return;
+
         int semester = 1;
         int yearTaken = coursesTaken.get(0).getYearTaken();
         int semesterCourseTaken = coursesTaken.get(0).getSemesterCourseTaken();

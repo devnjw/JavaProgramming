@@ -1,10 +1,12 @@
 package edu.handong.analysis;
 
+import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import edu.handong.analysis.datamodel.Code;
 import edu.handong.analysis.datamodel.Course;
 import edu.handong.analysis.datamodel.Student;
 import edu.handong.analysise.utils.NotEnoughArgumentException;
@@ -38,14 +40,7 @@ public class HGUCoursePatternAnalyzer {
 			System.exit(0);
 		}*/
 
-		String dataPath = input; // csv file to be analyzed
-		String resultPath = output; // the file path where the results are saved.
-		ArrayList<String> lines = Utils.getLines(dataPath, true);
 
-		students = loadStudentCourseRecords(lines);
-
-		// To sort HashMap entries by key values so that we can save the results by student ids in ascending order.
-		Map<String, Student> sortedStudents = new TreeMap<String,Student>(students);
 
 
 		Options options = createOptions();
@@ -56,6 +51,16 @@ public class HGUCoursePatternAnalyzer {
 			}
 			//String data
 
+            String dataPath = input; // csv file to be analyzed
+            String resultPath = output; // the file path where the results are saved.
+            ArrayList<String> lines = Utils.getLines(dataPath, true);
+
+            students = loadStudentCourseRecords(lines);
+
+            // To sort HashMap entries by key values so that we can save the results by student ids in ascending order.
+            Map<String, Student> sortedStudents = new TreeMap<String,Student>(students);
+
+
 			if(Integer.parseInt(analysis )== 1) {
 				System.out.println("Analyzer 1 is working now...");
 				// Generate result lines to be saved.
@@ -63,18 +68,17 @@ public class HGUCoursePatternAnalyzer {
 				// Write a file (named like the value of resultPath) with linesTobeSaved.
 				Utils.writeAFile(linesToBeSaved, resultPath);
 			}else if(Integer.parseInt(analysis) == 2){
-
+                System.out.println("Analyzer 2 is working now...");
+                // Generate result lines to be saved.
+                ArrayList<String> linesToBeSaved = courseTakenInfo(sortedStudents, lines);
+                // Write a file (named like the value of resultPath) with linesTobeSaved.
+                Utils.writeAFile(linesToBeSaved, resultPath);
 			}else
 				System.out.println("Wrong number. \"-a\" must be between 1 and 10.");
 		}
-
-
-
-
-
-
 	}
-	
+
+
 	/**
 	 * This method create HashMap<String,Student> from the data csv file. Key is a student id and the corresponding object is an instance of Student.
 	 * The Student instance have all the Course instances taken by the student.
@@ -94,8 +98,13 @@ public class HGUCoursePatternAnalyzer {
 
 		//Course course;
 		for(String line:lines) {
-			Course course = new Course(line);
-			students.get(course.getStudentId()).addCourse(course);
+            int year = Integer.parseInt(line.split(", ")[7]);
+            //System.out.println(year);
+		    if(year >= Integer.parseInt(startyear) && year <= Integer.parseInt(endyear)) {
+                //System.out.println(line.split(", ")[0] + " : " + year);
+                Course course = new Course(line);
+                students.get(course.getStudentId()).addCourse(course);
+            }
 		}
 
 		return students; // do not forget to return a proper variable.
@@ -115,6 +124,73 @@ public class HGUCoursePatternAnalyzer {
 	 * @param sortedStudents
 	 * @return
 	 */
+    private ArrayList<String> courseTakenInfo(Map<String, Student> sortedStudents, ArrayList<String> lines){
+        ArrayList<String> arrayList = new ArrayList<>();
+        HashMap<String, Code> codes = new HashMap<>();
+        Code code;
+        for(int i = Integer.parseInt(startyear); i <= Integer.parseInt(endyear); i++){
+            for(int j = 1; j <= 4; j++){
+                code = new Code(i, j, coursecode);
+                codes.put((i + "-" + j), code);
+            }
+        }
+
+        /*for(int i = Integer.parseInt(startyear); i <= Integer.parseInt(endyear); i++){
+            for(int j = 1; j <= 4; j++){
+                String key = i + "-" + j;
+                int count = 0;
+                int studentsTaken = 0;
+                for(int l = 0; l < sortedStudents.size(); l++) { // 학생
+                    ArrayList<Course> coursesTaken = sortedStudents.get(String.format("%04d", l + 1)).getCoursesTaken();
+                    int on = 0;
+                    for(int l2 = 0; l2 < coursesTaken.size(); l2++) { // 수업
+                        if (coursesTaken.get(l2).getYearTaken() == i && coursesTaken.get(l2).getSemesterCourseTaken() == j) {
+                            if (on != 1) {
+                                count++;
+                                on = 1;
+                            }
+                            if (coursesTaken.get(l2).getCourseCode().equals(coursecode))
+                                studentsTaken++;
+                        }
+                    }
+                }
+                System.out.println("count : " + count + " studentsTaken : " + studentsTaken);
+                totalStudentsInSemester.put(key, count + 1000*studentsTaken);
+            }
+        }*/
+
+        // get course name
+
+
+        /*arrayList.add("Year, Semester, CouseCode, CourseName, TotalStudents, StudentsTaken, Rate");
+        for(int i = Integer.parseInt(startyear); i <= Integer.parseInt(endyear); i++) {
+            for (int j = 1; j <= 4; j++) {
+                String courseName;
+                for(String line:lines) {
+                    System.out.println(coursecode + line.split(", ")[4]);
+                    if (line.split(", ")[4] == coursecode) {
+                        courseName = line.split(", ")[5];
+                        arrayList.add(i + ", " + j + ", " + coursecode + courseName + totalStudentsInSemester.get(i + "-" + j) % 1000 + totalStudentsInSemester.get(i + "-" + j) / 1000 + (totalStudentsInSemester.get(i + "-" + j) % 1000) / (totalStudentsInSemester.get(i + "-" + j) / 1000));
+                        System.out.println(i + ", " + j + ", " + coursecode + courseName + totalStudentsInSemester.get(i + "-" + j) % 1000 + totalStudentsInSemester.get(i + "-" + j) / 1000 + (totalStudentsInSemester.get(i + "-" + j) % 1000) / (totalStudentsInSemester.get(i + "-" + j) / 1000));
+                        break;
+                    }
+                }
+            }
+        }*/
+
+
+
+       /*for(int i = 0; i < sortedStudents.size(); i++){
+            ArrayList<Course> coursesTaken = sortedStudents.get(String.format("%04d", i+1)).getCoursesTaken();
+            for(int j = 0; j < coursesTaken.size(); j++){
+                if(coursesTaken.get(j).getCourseCode().equals(coursecode)){
+                    arrayList.add(coursesTaken.get(j).getYearTaken() + ", " + coursesTaken.get(j).getSemesterCourseTaken() + ", " + coursecode + ", " + coursesTaken.get(j).getCourseName());
+                }
+            }
+        }*/
+        return arrayList;
+    }
+
 	private ArrayList<String> countNumberOfCoursesTakenInEachSemester(Map<String, Student> sortedStudents) {
 		// TODO: Implement this method
 		ArrayList<String> arrayList = new ArrayList<>();
