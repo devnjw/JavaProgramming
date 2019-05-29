@@ -130,64 +130,19 @@ public class HGUCoursePatternAnalyzer {
         Code code;
         for(int i = Integer.parseInt(startyear); i <= Integer.parseInt(endyear); i++){
             for(int j = 1; j <= 4; j++){
-                code = new Code(i, j, coursecode);
+                code = new Code(i, j, coursecode, lines);
                 codes.put((i + "-" + j), code);
             }
         }
-
-        /*for(int i = Integer.parseInt(startyear); i <= Integer.parseInt(endyear); i++){
-            for(int j = 1; j <= 4; j++){
-                String key = i + "-" + j;
-                int count = 0;
-                int studentsTaken = 0;
-                for(int l = 0; l < sortedStudents.size(); l++) { // 학생
-                    ArrayList<Course> coursesTaken = sortedStudents.get(String.format("%04d", l + 1)).getCoursesTaken();
-                    int on = 0;
-                    for(int l2 = 0; l2 < coursesTaken.size(); l2++) { // 수업
-                        if (coursesTaken.get(l2).getYearTaken() == i && coursesTaken.get(l2).getSemesterCourseTaken() == j) {
-                            if (on != 1) {
-                                count++;
-                                on = 1;
-                            }
-                            if (coursesTaken.get(l2).getCourseCode().equals(coursecode))
-                                studentsTaken++;
-                        }
-                    }
-                }
-                System.out.println("count : " + count + " studentsTaken : " + studentsTaken);
-                totalStudentsInSemester.put(key, count + 1000*studentsTaken);
-            }
-        }*/
-
-        // get course name
-
-
-        /*arrayList.add("Year, Semester, CouseCode, CourseName, TotalStudents, StudentsTaken, Rate");
         for(int i = Integer.parseInt(startyear); i <= Integer.parseInt(endyear); i++) {
             for (int j = 1; j <= 4; j++) {
-                String courseName;
-                for(String line:lines) {
-                    System.out.println(coursecode + line.split(", ")[4]);
-                    if (line.split(", ")[4] == coursecode) {
-                        courseName = line.split(", ")[5];
-                        arrayList.add(i + ", " + j + ", " + coursecode + courseName + totalStudentsInSemester.get(i + "-" + j) % 1000 + totalStudentsInSemester.get(i + "-" + j) / 1000 + (totalStudentsInSemester.get(i + "-" + j) % 1000) / (totalStudentsInSemester.get(i + "-" + j) / 1000));
-                        System.out.println(i + ", " + j + ", " + coursecode + courseName + totalStudentsInSemester.get(i + "-" + j) % 1000 + totalStudentsInSemester.get(i + "-" + j) / 1000 + (totalStudentsInSemester.get(i + "-" + j) % 1000) / (totalStudentsInSemester.get(i + "-" + j) / 1000));
-                        break;
-                    }
-                }
+                code = codes.get(i + "-" + j);
+                arrayList.add(code.getYear() + ", " + code.getSemester() + ", " + coursecode + ", " + code.getCourseName() + ", " + (int)code.getTotalStudents() + ", "
+                        + (int)code.getStudentsTaken() + ", " + String.format("%.2f", code.getRate()));
+                System.out.println(code.getYear() + ", " + code.getSemester() + ", " + coursecode + ", " + code.getCourseName() + ", " + (int)code.getTotalStudents() + ", "
+                        + (int)code.getStudentsTaken() + ", " + String.format("%.2f", code.getRate()));
             }
-        }*/
-
-
-
-       /*for(int i = 0; i < sortedStudents.size(); i++){
-            ArrayList<Course> coursesTaken = sortedStudents.get(String.format("%04d", i+1)).getCoursesTaken();
-            for(int j = 0; j < coursesTaken.size(); j++){
-                if(coursesTaken.get(j).getCourseCode().equals(coursecode)){
-                    arrayList.add(coursesTaken.get(j).getYearTaken() + ", " + coursesTaken.get(j).getSemesterCourseTaken() + ", " + coursecode + ", " + coursesTaken.get(j).getCourseName());
-                }
-            }
-        }*/
+        }
         return arrayList;
     }
 
