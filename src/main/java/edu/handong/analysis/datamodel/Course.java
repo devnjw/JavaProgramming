@@ -1,5 +1,11 @@
 package edu.handong.analysis.datamodel;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
+
+import java.io.FileReader;
+import java.io.Reader;
+
 public class Course {
     private String studentId;
     private String yearMonthGraduated;
@@ -20,17 +26,26 @@ public class Course {
         return courseName;
     }
 
-    public Course(String line){
-        String data[] = line.split(", ");
-        studentId = data[0];
-        yearMonthGraduated = data[1];
-        firstMajor = data[2];
-        secondMajor = data[3];
-        courseCode = data[4];
-        courseName = data[5];
-        courseCredit = data[6];
-        yearTaken = Integer.parseInt(data[7]);
-        semesterCourseTaken = Integer.parseInt(data[8]);
+    public Course(String input){
+        try {
+            Reader in = new FileReader(input);
+            Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
+            for (CSVRecord data : records) {
+                studentId = data.get(0).trim();
+                yearMonthGraduated = data.get(1).trim();
+                firstMajor = data.get(2).trim();
+                secondMajor = data.get(3).trim();
+                courseCode = data.get(4).trim();
+                courseName = data.get(5).trim();
+                courseCredit = data.get(6).trim();
+                yearTaken = Integer.parseInt(data.get(7).trim());
+                semesterCourseTaken = Integer.parseInt(data.get(8).trim());
+            }
+        } catch( Exception e ){
+            e.printStackTrace();
+        }
+        //String data[] = line.split(", ");
+
     }
 
 

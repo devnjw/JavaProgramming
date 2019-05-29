@@ -1,5 +1,7 @@
 package edu.handong.analysis;
 
+import java.io.FileReader;
+import java.io.Reader;
 import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +14,9 @@ import edu.handong.analysis.datamodel.Student;
 import edu.handong.analysise.utils.NotEnoughArgumentException;
 import edu.handong.analysise.utils.Utils;
 import org.apache.commons.cli.*;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 
 public class HGUCoursePatternAnalyzer {
 	String input;
@@ -55,6 +60,8 @@ public class HGUCoursePatternAnalyzer {
             String resultPath = output; // the file path where the results are saved.
             ArrayList<String> lines = Utils.getLines(dataPath, true);
 
+
+
             students = loadStudentCourseRecords(lines);
 
             // To sort HashMap entries by key values so that we can save the results by student ids in ascending order.
@@ -96,7 +103,27 @@ public class HGUCoursePatternAnalyzer {
 			students.put(String.format("%04d", i+1), student);
 		}
 
-		//Course course;
+        try {
+            Reader in = new FileReader(input);
+            Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
+            //int i = 0;
+            for (CSVRecord record : records) {
+                if(!record.get(7).trim().equals("StudentID")) {
+                    System.out.println(record.get(7));
+                    int year = Integer.parseInt(record.get(7).trim());
+                    //System.out.println(year);
+                    if (year >= Integer.parseInt(startyear) && year <= Integer.parseInt(endyear)) {
+                        //System.out.println(line.split(", ")[0] + " : " + year);
+                        Course course = new Course(input);
+                        students.get(course.getStudentId()).addCourse(course);
+                    }
+                }
+            }
+        } catch( Exception e ){
+            e.printStackTrace();
+        }
+
+		/*//Course course;
 		for(String line:lines) {
             int year = Integer.parseInt(line.split(", ")[7]);
             //System.out.println(year);
@@ -105,7 +132,7 @@ public class HGUCoursePatternAnalyzer {
                 Course course = new Course(line);
                 students.get(course.getStudentId()).addCourse(course);
             }
-		}
+		}*/
 
 		return students; // do not forget to return a proper variable.
 
@@ -138,9 +165,9 @@ public class HGUCoursePatternAnalyzer {
             for (int j = 1; j <= 4; j++) {
                 code = codes.get(i + "-" + j);
                 arrayList.add(code.getYear() + ", " + code.getSemester() + ", " + coursecode + ", " + code.getCourseName() + ", " + (int)code.getTotalStudents() + ", "
-                        + (int)code.getStudentsTaken() + ", " + String.format("%.2f", code.getRate()));
+                        + (int)code.getStudentsTaken() + ", " + String.format("%.1f", code.getRate()));
                 System.out.println(code.getYear() + ", " + code.getSemester() + ", " + coursecode + ", " + code.getCourseName() + ", " + (int)code.getTotalStudents() + ", "
-                        + (int)code.getStudentsTaken() + ", " + String.format("%.2f", code.getRate()));
+                        + (int)code.getStudentsTaken() + ", " + String.format("%.1f", code.getRate()));
             }
         }
         return arrayList;
