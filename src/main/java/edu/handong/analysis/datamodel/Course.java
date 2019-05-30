@@ -27,26 +27,7 @@ public class Course {
     }
 
     public Course(){
-        /*try {
-            Reader in = new FileReader(input);
-            Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
-            for (CSVRecord data : records) {
-                if(((CSVParser) records).getCurrentLineNumber() != 1) {
-                    studentId = data.get(0).trim();
-                    yearMonthGraduated = data.get(1).trim();
-                    firstMajor = data.get(2).trim();
-                    secondMajor = data.get(3).trim();
-                    courseCode = data.get(4).trim();
-                    courseName = data.get(5).trim();
-                    courseCredit = data.get(6).trim();
-                    yearTaken = Integer.parseInt(data.get(7).trim());
-                    semesterCourseTaken = Integer.parseInt(data.get(8).trim());
-                }
-            }
-        } catch( Exception e ){
-            e.printStackTrace();
-        }
-        //String data[] = line.split(", ");*/
+
     }
 
     public void setStudentId(String studentId) {
