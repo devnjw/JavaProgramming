@@ -35,18 +35,6 @@ public class HGUCoursePatternAnalyzer {
 	 * @param args
 	 */
 	public void run(String[] args) {
-		
-		/*try {
-			// when there are not enough arguments from CLI, it throws the NotEnoughArgmentException which must be defined by you.
-			if(args.length<2)
-				throw new NotEnoughArgumentException();
-		} catch (NotEnoughArgumentException e) {
-			System.out.println(e.getMessage());
-			System.exit(0);
-		}*/
-
-
-
 
 		Options options = createOptions();
 		if(parseOptions(options, args)){
@@ -60,13 +48,10 @@ public class HGUCoursePatternAnalyzer {
             String resultPath = output; // the file path where the results are saved.
             ArrayList<String> lines = Utils.getLines(dataPath, true);
 
-
-
             students = loadStudentCourseRecords(lines);
 
             // To sort HashMap entries by key values so that we can save the results by student ids in ascending order.
             Map<String, Student> sortedStudents = new TreeMap<String,Student>(students);
-
 
 			if(Integer.parseInt(analysis )== 1) {
 				System.out.println("Analyzer 1 is working now...");
@@ -102,19 +87,26 @@ public class HGUCoursePatternAnalyzer {
 			student = new Student(String.format("%04d", i+1));
 			students.put(String.format("%04d", i+1), student);
 		}
-
         try {
             Reader in = new FileReader(input);
             Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
-            //int i = 0;
+
+            System.out.println(students.size());
             for (CSVRecord record : records) {
-                if(!record.get(7).trim().equals("StudentID")) {
-                    System.out.println(record.get(7));
+                if(((CSVParser) records).getCurrentLineNumber() != 1) {
                     int year = Integer.parseInt(record.get(7).trim());
-                    //System.out.println(year);
                     if (year >= Integer.parseInt(startyear) && year <= Integer.parseInt(endyear)) {
-                        //System.out.println(line.split(", ")[0] + " : " + year);
-                        Course course = new Course(input);
+                        Course course = new Course();
+                        course.setStudentId(record.get(0).trim());
+                        course.setYearMonthGraduated(record.get(1).trim());
+                        course.setFirstMajor(record.get(2).trim());
+                        course.setSecondMajor(record.get(3).trim());
+                        course.setCourseCode(record.get(4).trim());
+                        course.setCourseName(record.get(5).trim());
+                        course.setCourseCredit(record.get(6).trim());
+                        course.setYearTaken(Integer.parseInt(record.get(7).trim()));
+                        course.setSemesterCourseTaken(Integer.parseInt(record.get(8).trim()));
+
                         students.get(course.getStudentId()).addCourse(course);
                     }
                 }
@@ -122,17 +114,6 @@ public class HGUCoursePatternAnalyzer {
         } catch( Exception e ){
             e.printStackTrace();
         }
-
-		/*//Course course;
-		for(String line:lines) {
-            int year = Integer.parseInt(line.split(", ")[7]);
-            //System.out.println(year);
-		    if(year >= Integer.parseInt(startyear) && year <= Integer.parseInt(endyear)) {
-                //System.out.println(line.split(", ")[0] + " : " + year);
-                Course course = new Course(line);
-                students.get(course.getStudentId()).addCourse(course);
-            }
-		}*/
 
 		return students; // do not forget to return a proper variable.
 
@@ -181,7 +162,9 @@ public class HGUCoursePatternAnalyzer {
 		for(int i = 0; i < sortedStudents.size(); i++){
 			sortedStudents.get(String.format("%04d", i+1)).setSemestersByYearAndSemester();
 			for(int j = 0; j < sortedStudents.get(String.format("%04d", i+1)).getSemestersByYearAndSemester().size(); j++)
-				arrayList.add(sortedStudents.get(String.format("%04d", i+1)).getStudentId() + ", " + sortedStudents.get(String.format("%04d", i+1)).getSemestersByYearAndSemester().size() + ", " + Integer.toString(j+1) + ", " + Integer.toString(sortedStudents.get(String.format("%04d", i+1)).getNumCourseInNthSemester(j+1)));
+				arrayList.add(sortedStudents.get(String.format("%04d", i+1)).getStudentId() + ", " + sortedStudents.get(String.format("%04d", i+1)).
+                        getSemestersByYearAndSemester().size() + ", " + Integer.toString(j+1) + ", "
+                        + Integer.toString(sortedStudents.get(String.format("%04d", i+1)).getNumCourseInNthSemester(j+1)));
 		}
 
 		return arrayList; // do not forget to return a proper variable.
