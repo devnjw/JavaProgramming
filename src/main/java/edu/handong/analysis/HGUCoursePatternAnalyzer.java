@@ -146,9 +146,9 @@ public class HGUCoursePatternAnalyzer {
             for (int j = 1; j <= 4; j++) {
                 code = codes.get(i + "-" + j);
                 arrayList.add(code.getYear() + ", " + code.getSemester() + ", " + coursecode + ", " + code.getCourseName() + ", " + (int)code.getTotalStudents() + ", "
-                        + (int)code.getStudentsTaken() + ", " + String.format("%.1f", code.getRate()));
+                        + (int)code.getStudentsTaken() + ", " + String.format("%.1f", code.getRate()*100) + "%");
                 System.out.println(code.getYear() + ", " + code.getSemester() + ", " + coursecode + ", " + code.getCourseName() + ", " + (int)code.getTotalStudents() + ", "
-                        + (int)code.getStudentsTaken() + ", " + String.format("%.1f", code.getRate()));
+                        + (int)code.getStudentsTaken() + ", " + String.format("%.1f", code.getRate()*100) + "%");
             }
         }
         return arrayList;
@@ -178,6 +178,7 @@ public class HGUCoursePatternAnalyzer {
 			CommandLine cmd = parser.parse(options, args);
 
 			input = cmd.getOptionValue("i");
+
 			output = cmd.getOptionValue("o");
 			analysis = cmd.getOptionValue("a");
 			coursecode = cmd.getOptionValue("c");

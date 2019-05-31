@@ -48,9 +48,9 @@ public class Code {
     }
 
     public void setTotalStudents() {
+        studentIdForCheck = "0";
         for(String line:lines){
             String data[] = line.split(", ");
-            studentIdForCheck = "0";
             if(data[7].equals(Integer.toString(year)) && data[8].equals(Integer.toString(semester)) && !data[0].equals(studentIdForCheck)) {
                 totalStudents++;
                 studentIdForCheck = data[0];
