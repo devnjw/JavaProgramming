@@ -266,7 +266,6 @@ class ChatThread extends Thread{
                     count++;
             }
         }
-        pw.println("Debug 4");
         switch (count){
             case 6 :
                 pw.println("You won the First prize !");
@@ -291,7 +290,7 @@ class ChatThread extends Thread{
             default:
                 pw.println("Unlucky!!");
                 pw.println("-1 coin");
-                wallets.get(id).subtractCoins(-1);
+                wallets.get(id).subtractCoins(1);
                 break;
         }
         pw.flush();

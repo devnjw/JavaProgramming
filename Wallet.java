@@ -16,6 +16,6 @@ public class Wallet {
         numOfCoins += num;
     }
     public void subtractCoins(int num){
-        numOfCoins -= num;
+        numOfCoins = numOfCoins - num;
     }
 }
