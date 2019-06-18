@@ -1,5 +1,6 @@
 package edu.handong.merge;
 
+import edu.handong.merge.datamodel.RowData;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.FileInputStream;
@@ -52,6 +53,7 @@ public class ExcelReader {
                 cell = row.createCell(3);
 
             values.add(cell.getStringCellValue());
+
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
