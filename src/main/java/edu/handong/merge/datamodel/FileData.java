@@ -11,12 +11,14 @@ import java.util.TreeMap;
 
 import static org.apache.poi.ss.usermodel.CellType.STRING;
 
-public class FileData {
+public class FileData<T> {
     private ArrayList<Object[]> data;
+    private T id;
 
-    public void saveRowData(int id, InputStream is) {
+    public void saveRowData(T id, InputStream is) {
         //ArrayList<String> values = new ArrayList<String>();
         data = new ArrayList<Object[]>();
+        this.id = id;
 
         try (InputStream inp = is) {
 

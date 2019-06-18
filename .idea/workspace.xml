@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45b6d645-d814-4c2c-a6ae-00d12fa092fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/handong/merge/ThreadHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/handong/merge/CustomizedExeptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MergeExcelTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MergeExcelTest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/classAnalysis.bin" afterDir="false" />
@@ -17,13 +12,29 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/ExcelReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/Utils$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/Utils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/ZipHandler$ZipThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/ZipHandler.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/ZipHandler2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/ZipHandler2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/ZipReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/ZipReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/datamodel/FileData.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/datamodel/FileData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/datamodel/RowData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/datamodel/SourceChartAndImage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/edu/handong/merge/datamodel/SourceSummary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/handong/merge/ExcelReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/handong/merge/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipHandler.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipHandler2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipHandler2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/FileData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/FileData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/RowData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/SourceChartAndImage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/SourceSummary.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -57,18 +68,6 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/RowData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
@@ -78,23 +77,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#615#626#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipHandler2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="244">
+              <caret line="112" column="74" selection-start-line="112" selection-start-column="74" selection-end-line="112" selection-end-column="74" />
             </state>
           </provider>
         </entry>
@@ -102,10 +88,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ThreadHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+            <state relative-caret-position="-136">
+              <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#694#695#0" expanded="true" />
                 <element signature="e#724#725#0" expanded="true" />
                 <element signature="e#777#778#0" expanded="true" />
                 <element signature="e#813#814#0" expanded="true" />
@@ -114,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/FileData.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
-              <caret line="11" column="58" lean-forward="true" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+              <caret line="29" column="35" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,45 +114,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/CustomizedExeptionHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
+            <state relative-caret-position="190">
+              <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1991#1992#0" expanded="true" />
                 <element signature="e#2023#2024#0" expanded="true" />
-                <element signature="e#1187#1200#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/SourceSummary.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/SourceChartAndImage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ExcelReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -191,23 +156,24 @@
         <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/ZipHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/SourceSummary.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/Utils.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/SourceSummary.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/CellCollector.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/Row.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/Row.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/ExcelReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/RowData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipReader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/FileData.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/ThreadHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/FileData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/Utils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/CustomizedExeptionHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipHandler2.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipReader.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="85" />
     <option name="y" value="25" />
     <option name="width" value="1750" />
@@ -409,7 +375,7 @@
       <window_info anchor="bottom" id="Build" order="2" weight="0.32907802" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.32907802" />
       <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49932885" visible="true" weight="0.39432624" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
@@ -448,16 +414,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/SourceSummary.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -482,16 +438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ExcelReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -499,10 +445,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/CustomizedExeptionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+        <state relative-caret-position="144">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#615#626#0" expanded="true" />
@@ -510,35 +463,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipReader.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
+        <state relative-caret-position="228">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1991#1992#0" expanded="true" />
-            <element signature="e#2023#2024#0" expanded="true" />
-            <element signature="e#1187#1200#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipHandler2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ThreadHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#724#725#0" expanded="true" />
-            <element signature="e#777#778#0" expanded="true" />
-            <element signature="e#813#814#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -546,9 +476,52 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/datamodel/FileData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
-          <caret line="11" column="58" lean-forward="true" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <caret line="29" column="35" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ThreadHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+            <element signature="e#724#725#0" expanded="true" />
+            <element signature="e#777#778#0" expanded="true" />
+            <element signature="e#813#814#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipHandler2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="112" column="74" selection-start-line="112" selection-start-column="74" selection-end-line="112" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ExcelReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="53" column="50" selection-start-line="53" selection-start-column="50" selection-end-line="53" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/handong/merge/ZipReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1991#1992#0" expanded="true" />
+            <element signature="e#2023#2024#0" expanded="true" />
           </folding>
         </state>
       </provider>

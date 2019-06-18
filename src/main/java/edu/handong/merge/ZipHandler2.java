@@ -29,6 +29,15 @@ public class ZipHandler2 {
                 return;
             }
         }
+        try {
+            File theDir = new File(input);
+            if (!theDir.exists())
+                throw new CustomizedExeptionHandler(input);
+        } catch (CustomizedExeptionHandler e) {
+            System.out.println(e.getMessage());
+            System.exit(0);
+        }
+
         outputData = new HashMap<String, Object[]>();
         summaryOutputData = new HashMap<String, Object[]>();
         chartOutputData = new HashMap<String, Object[]>();
@@ -101,7 +110,7 @@ public class ZipHandler2 {
             FileOutputStream out = new FileOutputStream(new File(output));
             workbook.write(out);
             out.close();
-            System.out.println("results.xlsx written successfully on disk.");
+            System.out.println(output + " written successfully on disk.");
         }
         catch (Exception e) {
             e.printStackTrace();
