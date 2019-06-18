@@ -4,12 +4,16 @@ import org.apache.commons.cli.*;
 
 import java.io.*;
 import java.util.*;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class ZipHandler {
+public class ZipHandler{
     String input;
     String output;
     boolean help;
+    ArrayList<String> stringToSave;
+    //ArrayList<String> unMergedString[];
+
 
     public void run(String[] args) {
         Options options = createOptions();
@@ -19,13 +23,49 @@ public class ZipHandler {
                 return;
             }
         }
-        try(FileInputStream fin = new FileInputStream(input)){
-            ZipInputStream firstZip = new ZipInputStream(fin);
 
+        ArrayList<ZipThread> sumThreads = new ArrayList<ZipThread>();
+        for(int i = 1; i < 6; i++){
+            String fullpath = input + "000" + i + ".zip";
+            sumThreads.add(new ZipThread(fullpath));
+        }
+        ArrayList<Thread> threadsForAdd = new ArrayList<Thread>();
+
+        for(ZipThread runner:sumThreads) {
+            Thread thread = new Thread(runner);
+            thread.start();
+            threadsForAdd.add(thread);
+        }
+        List<InputStream> listsToMerge = new ArrayList<InputStream>();
+
+        for(ZipThread runner:sumThreads){
+            //listsToMerge.add(runner.list.get(0));
+            //listsToMerge.add(runner.list.get(1));
+            listsToMerge = runner.list;
         }
 
+        File file = new File(output);
+        try {
+            Utils.mergeExcelFiles(file, listsToMerge);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
+    private class ZipThread implements Runnable {
+        private String fullPath;
+        private List<InputStream> list;
+
+        public ZipThread(String fullPath){
+            this.fullPath = fullPath;
+        }
+        public void run() {
+            ZipReader reader = new ZipReader();
+            System.out.println("Debugging 1");
+            list = reader.getFileFromZip(fullPath);
+        }
+    }
 
     private boolean parseOptions(Options options, String[] args) {
         CommandLineParser parser = new DefaultParser();
