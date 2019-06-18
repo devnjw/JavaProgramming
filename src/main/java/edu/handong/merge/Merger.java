@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.*;
 
-public class ZipHandler2 {
+public class Merger {
     String input;
     String output;
     boolean help;

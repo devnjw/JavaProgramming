@@ -2,7 +2,7 @@ package edu.handong.merge;
 
 public class Main {
     public static void main(String[] args) {
-        ZipHandler2 handler = new ZipHandler2();
+        Merger handler = new Merger();
         handler.run(args);
     }
 }
