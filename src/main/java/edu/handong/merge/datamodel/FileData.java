@@ -11,6 +11,7 @@ import java.util.TreeMap;
 
 import static org.apache.poi.ss.usermodel.CellType.STRING;
 
+//Declare generic type
 public class FileData<T> {
     private ArrayList<Object[]> data;
     private T id;
@@ -28,21 +29,19 @@ public class FileData<T> {
                 Row row = sheet.getRow(i);
                 Object [] datas = new Object[row.getLastCellNum() + 1];
                 datas[0] = "000" + id;
-                System.out.println(row.getLastCellNum());
+                //System.out.println(row.getLastCellNum());
                 for(int j = row.getFirstCellNum(); j < row.getLastCellNum(); j++){
                     Cell cell = row.getCell(j);
                     if(cell != null && cell.getCellType()==STRING){
-                        System.out.println(cell.getStringCellValue());
+                        //System.out.println(cell.getStringCellValue());
                         datas[j+1] = cell.getStringCellValue();
                     }
                 }
                 data.add(datas);
             }
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
