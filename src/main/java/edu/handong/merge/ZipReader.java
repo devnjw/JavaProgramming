@@ -38,7 +38,7 @@ public class ZipReader {
             e.printStackTrace();
         }
     }
-    public void readFileInZip2(String path){
+    public void readFileInZip2(int id, String path){
         fileDatas = new ArrayList<>();
         ZipFile zipFile;
         try {
@@ -51,7 +51,7 @@ public class ZipReader {
 
                 FileData fileData = new FileData();
 
-                fileData.saveRowData(stream);
+                fileData.saveRowData(id, stream);
                 fileDatas.add(fileData);
             }
         } catch (IOException e) {

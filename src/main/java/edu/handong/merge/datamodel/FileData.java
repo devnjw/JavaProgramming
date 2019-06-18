@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static org.apache.poi.ss.usermodel.CellType.STRING;
+
 public class FileData {
     private ArrayList<Object[]> data;
 
-    public void saveRowData(InputStream is) {
+    public void saveRowData(int id, InputStream is) {
         //ArrayList<String> values = new ArrayList<String>();
         data = new ArrayList<Object[]>();
 
@@ -22,12 +24,15 @@ public class FileData {
             Sheet sheet = wb.getSheetAt(0);
             for(int i = sheet.getFirstRowNum(); i <= sheet.getLastRowNum(); i++){
                 Row row = sheet.getRow(i);
-                Object [] datas = new Object[row.getLastCellNum()];
+                Object [] datas = new Object[row.getLastCellNum() + 1];
+                datas[0] = "000" + id;
                 System.out.println(row.getLastCellNum());
                 for(int j = row.getFirstCellNum(); j < row.getLastCellNum(); j++){
                     Cell cell = row.getCell(j);
-                    System.out.println(cell.getStringCellValue());
-                    datas[j] = cell.getStringCellValue();
+                    if(cell != null && cell.getCellType()==STRING){
+                        System.out.println(cell.getStringCellValue());
+                        datas[j+1] = cell.getStringCellValue();
+                    }
                 }
                 data.add(datas);
             }

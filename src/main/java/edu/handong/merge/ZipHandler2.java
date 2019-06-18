@@ -16,9 +16,9 @@ public class ZipHandler2 {
     String input;
     String output;
     boolean help;
-    ArrayList<String> stringToSave;
-    //ArrayList<String> unMergedString[];
     Map<String, Object[]> outputData;
+    Map<String, Object[]> summaryOutputData;
+    Map<String, Object[]> chartOutputData;
 
 
     public void run(String[] args) {
@@ -30,28 +30,49 @@ public class ZipHandler2 {
             }
         }
         outputData = new HashMap<String, Object[]>();
+        summaryOutputData = new HashMap<String, Object[]>();
+        chartOutputData = new HashMap<String, Object[]>();
 
-        ZipReader zipReader = new ZipReader();
-        zipReader.readFileInZip2("0001.zip");
-
-        ArrayList<FileData> fileDatas;
-        zipReader.getFileDatas().get(0);
-
-        int i = 0;
-        ArrayList<Object[]> firstFileDatas = zipReader.getFileDatas().get(0).getData();
-        for(Object [] data : firstFileDatas){
-            outputData.put(Integer.toString(i++), data);
+        HashMap<String, ThreadHandler> sumThreads = new HashMap<>();
+        for(int k = 1; k < 6; k++){
+            String path = input + "000" + k + ".zip";
+            ThreadHandler thread = new ThreadHandler(path, k);
+            thread.start();
+            sumThreads.put(Integer.toString(k), thread);
+        }
+        for (int k = 1; k < 6; k++) {
+            try {
+                sumThreads.get(Integer.toString(k)).join();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        ArrayList<Object[]> secondFileDatas = zipReader.getFileDatas().get(1).getData();
-        for(Object [] data : secondFileDatas){
-            outputData.put(Integer.toString(i++), data);
+        //outputData for results.csv
+        int keyNum = 0, keyNum1 = 0, keyNum2 = 0;
+        for(int k = 1; k < 6; k++){
+            String key = Integer.toString(k);
+            ArrayList<Object[]> summary = sumThreads.get(key).getSummary();
+            for(Object [] data : summary){
+                outputData.put(Integer.toString(keyNum++), data);
+                summaryOutputData.put(Integer.toString(keyNum1++), data);
+            }
+            ArrayList<Object[]> chartAndImage = sumThreads.get(key).getChartAndImage();
+            for(Object [] data : chartAndImage){
+                outputData.put(Integer.toString(keyNum++), data);
+                chartOutputData.put(Integer.toString(keyNum2++), data);
+            }
         }
 
-        saveExcel(outputData);
+        saveExcel(outputData, output);
+        String fileOutPutName = output.split("\\.")[0];
+        String fileType = output.split("\\.")[1];
+        saveExcel(summaryOutputData, fileOutPutName + "1." + fileType);
+        saveExcel(chartOutputData,fileOutPutName + "2." + fileType);
     }
 
-    public void saveExcel(Map<String, Object[]> data){
+
+    public void saveExcel(Map<String, Object[]> data, String output){
         // Blank workbook
         XSSFWorkbook workbook = new XSSFWorkbook();
 
@@ -77,7 +98,7 @@ public class ZipHandler2 {
         }
         try {
             // this Writes the workbook gfgcontribute
-            FileOutputStream out = new FileOutputStream(new File("results.xlsx"));
+            FileOutputStream out = new FileOutputStream(new File(output));
             workbook.write(out);
             out.close();
             System.out.println("results.xlsx written successfully on disk.");
@@ -140,3 +161,4 @@ public class ZipHandler2 {
         formatter.printHelp("JavaFinalProject", header, options, footer, true);
     }
 }
+
