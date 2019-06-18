@@ -20,13 +20,13 @@ public class ZipReader {
             zipFile = new ZipFile(path);
             Enumeration<? extends ZipArchiveEntry> entries = zipFile.getEntries();
 
-            while(entries.hasMoreElements()){
+            while (entries.hasMoreElements()) {
                 ZipArchiveEntry entry = entries.nextElement();
                 InputStream stream = zipFile.getInputStream(entry);
 
                 ExcelReader myReader = new ExcelReader();
 
-                for(String value:myReader.getData(stream)) {
+                for (String value : myReader.getData(stream)) {
                     System.out.println(value);
                 }
             }
@@ -35,14 +35,15 @@ public class ZipReader {
             e.printStackTrace();
         }
     }
-    public List<InputStream> getFileFromZip(String path){
+
+    public List<InputStream> getFileFromZip(String path) {
         ZipFile zipFile;
         List<InputStream> list = new ArrayList<InputStream>();
         try {
             zipFile = new ZipFile(path);
             Enumeration<? extends ZipArchiveEntry> entries = zipFile.getEntries();
 
-            while(entries.hasMoreElements()){
+            while (entries.hasMoreElements()) {
                 ZipArchiveEntry entry = entries.nextElement();
                 InputStream stream = zipFile.getInputStream(entry);
 
@@ -56,8 +57,9 @@ public class ZipReader {
         File file = new File("resultTest.csv");
         try {
             Utils.mergeExcelFiles(file, list);
-        }catch(Exception e){
-        System.out.println(list.get(0));
+        } catch (Exception e) {
+            System.out.println(list.get(0));
+        }
         return list;
     }
 }
