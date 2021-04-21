@@ -1,3 +1,2 @@
-# JavaProgrammingHWs
-2019-01 Java Programming class assignments
+# 2019-01 Java Programming class assignments
 
